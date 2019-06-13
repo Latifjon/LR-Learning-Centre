@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LearningCentre.Controllers
 {
     [Route("[controller]")]
-    public class StudentController : Controller
+    public class StudentController : ControllerBase
     {
         /// <summary>
         /// 

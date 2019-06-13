@@ -14134,11 +14134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\LR\\LR Server App\\LearningCentre\\LearningCentre\\LearningCentre.csproj",
+      "projectUniqueName": "D:\\Projects\\LR\\LR Server App\\LR-Learning-Centre\\LearningCentre\\LearningCentre.csproj",
       "projectName": "LearningCentre",
-      "projectPath": "D:\\Projects\\LR\\LR Server App\\LearningCentre\\LearningCentre\\LearningCentre.csproj",
+      "projectPath": "D:\\Projects\\LR\\LR Server App\\LR-Learning-Centre\\LearningCentre\\LearningCentre.csproj",
       "packagesPath": "C:\\Users\\l.rasulov\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\LR\\LR Server App\\LearningCentre\\LearningCentre\\obj\\",
+      "outputPath": "D:\\Projects\\LR\\LR Server App\\LR-Learning-Centre\\LearningCentre\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

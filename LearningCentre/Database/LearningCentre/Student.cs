@@ -13,12 +13,13 @@ namespace LearningCentre.Database
         public string NativeLanguage { get; set; }
         public string Citizenship { get; set; }
         public long? PassportNumber { get; set; }
-        public int? Hometown { get; set; }
+        public int? CountryId { get; set; }
         public string WorkPlace { get; set; }
         public string PlaceOfStudy { get; set; }
         public DateTime? DateOfRegistration { get; set; }
         public int? UserProfileId { get; set; }
 
+        public Country Country { get; set; }
         public UserProfile UserProfile { get; set; }
     }
 }
