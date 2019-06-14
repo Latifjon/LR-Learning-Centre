@@ -6,12 +6,10 @@ using System.Text;
 using AutoMapper;
 using LearningCentre.Database;
 using LearningCentre.Database.LearningCentre.Data_Transfer_Objects;
-using LearningCentre.Database.Tables;
 using LearningCentre.Logics.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.IdentityModel.Tokens;
 using IAuthenticationService = LearningCentre.Logics.Services.Interfaces.IAuthenticationService;
 

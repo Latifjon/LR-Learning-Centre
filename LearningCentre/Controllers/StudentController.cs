@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LearningCentre.Database;
+﻿using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
 using LearningCentre.Logics.Services.Interfaces;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,9 +27,11 @@ namespace LearningCentre.Controllers
             _studentService = studentService;
         }
 
-        [HttpPost("createStudent")]
-        public IActionResult CreateStudent([FromBody]Student studentParam)
+        [HttpPost]
+        public IActionResult Post([FromBody] Student studentParam)
         {
+
+            var errCount = ModelState.ErrorCount;
             try
             {
                 _studentService.CreateStudent(studentParam);

@@ -83,8 +83,9 @@ namespace LearningCentre.Logics.Services
             student.PlaceOfStudy = studentParam.PlaceOfStudy;
             student.WorkPlace = student.WorkPlace;
             student.DateOfRegistration = studentParam.DateOfRegistration;
+            student.CountryId = studentParam.CountryId;
             student.UserProfileId = studentParam.UserProfileId;
-            student.UserProfile = student.UserProfile;
+            
 
             _dbContext.Student.Add(student);
             _dbContext.SaveChanges();
