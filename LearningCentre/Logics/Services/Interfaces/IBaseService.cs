@@ -2,46 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LearningCentre.Database;
 
 namespace LearningCentre.Logics.Services.Interfaces
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IStudentService
+    /// <typeparam name="TModel"></typeparam>
+    public interface IBaseService<TModel>
     {
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="model"></param>
         /// <returns></returns>
-        IEnumerable<Student> GetStudents();
+        TModel Create(TModel model);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<TModel> GetAll();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Student GetStudentById(int id);
+        TModel GetById(int id);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="student"></param>
-        /// <returns></returns>
-        Student CreateStudent(Student student);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="studentParam"></param>
-        void UpdateStudent(Student studentParam);
+        /// <param name="model"></param>
+        void Update(TModel model);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         void Delete(int id);
-
     }
 }

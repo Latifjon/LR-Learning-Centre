@@ -12,7 +12,7 @@ namespace LearningCentre.Logics.Services
     /// <summary>
     /// 
     /// </summary>
-    public class StudentService : BaseRepository, IStudentService
+    public class StudentService : BaseRepository, IBaseService<Student>
     {
         /// <summary>
         /// 
@@ -31,27 +31,9 @@ namespace LearningCentre.Logics.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Student> GetStudents()
-        {
-            return _dbContext.Student.ToList();
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public Student GetStudentById(int id)
-        {
-            return _dbContext.Student.Find(id);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="student"></param>
         /// <returns></returns>
-        public Student CreateStudent(Student student)
+        public Student Create(Student student)
         {
             VerifyIfStudentFieldsNull(student);
 
@@ -64,9 +46,27 @@ namespace LearningCentre.Logics.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="student"></param>
+        /// <returns></returns>
+        public IEnumerable<Student> GetAll()
+        {
+           return _dbContext.Student.ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Student GetById(int id)
+        {
+            return _dbContext.Student.Find(id);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="studentParam"></param>
-        public void UpdateStudent(Student studentParam)
+        public void Update(Student studentParam)
         {
             var student = _dbContext.Student.Find(studentParam.Id);
 
@@ -85,9 +85,8 @@ namespace LearningCentre.Logics.Services
             student.DateOfRegistration = studentParam.DateOfRegistration;
             student.CountryId = studentParam.CountryId;
             student.UserProfileId = studentParam.UserProfileId;
-            
 
-            _dbContext.Student.Add(student);
+            _dbContext.Student.Update(student);
             _dbContext.SaveChanges();
         }
 
@@ -97,7 +96,7 @@ namespace LearningCentre.Logics.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var student = _dbContext.Student.Find(id);
+            var student = GetById(id);
             if (student == null) return;
 
             _dbContext.Student.Remove(student);

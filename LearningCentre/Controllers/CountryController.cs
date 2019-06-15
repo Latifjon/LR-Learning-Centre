@@ -1,10 +1,11 @@
-﻿using LearningCentre.Database;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
 using LearningCentre.Logics.Services.Interfaces;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,29 +15,34 @@ namespace LearningCentre.Controllers
     /// 
     /// </summary>
     [Route("[controller]")]
-    public class StudentController : ControllerBase
+    public class CountryController : ControllerBase
     {
         /// <summary>
         /// 
         /// </summary>
-        private readonly IBaseService<Student> _studentService;
+        private readonly IBaseService<Country> _countryService;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="studentService"></param>
-        public StudentController(IBaseService<Student> studentService)
+        /// <param name="countryService"></param>
+        public CountryController(IBaseService<Country> countryService)
         {
-            _studentService = studentService;
+            _countryService = countryService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="country"></param>
+        /// <returns></returns>
         [HttpPost]
-        [Route("createStudent")]
-        public IActionResult CreateStudent([FromBody] Student studentParam)
+        [Route("createCountry")]
+        public IActionResult CreateCountry(Country country)
         {
             try
             {
-                _studentService.Create(studentParam);
+                _countryService.Create(country);
                 return Ok();
             }
             catch (AppException ex)
@@ -49,11 +55,11 @@ namespace LearningCentre.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet("students")]
-        public IActionResult GetStudents()
+        [HttpGet("Countries")]
+        public IActionResult GetCountries()
         {
-            var students = _studentService.GetAll();
-            return Ok(students);
+            var countries = _countryService.GetAll();
+            return Ok(countries);
         }
 
         /// <summary>
@@ -62,50 +68,48 @@ namespace LearningCentre.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Route("customStudent")]
-        public IActionResult GetStudentsById(int id)
+        [Route("customCountry")]
+        public IActionResult GetCountryById(int id)
         {
-            var student = _studentService.GetById(id);
+            var country = _countryService.GetById(id);
 
-            if (student == null)
-                return BadRequest("Student not found");
+            if (country == null)
+                return BadRequest("Country not found");
 
-            return Ok(student);
+            return Ok(country);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="studentParam"></param>
-        /// <returns></returns>
+        /// <param name="country"></param>
         [HttpPut("{id}")]
-        [Route("updateStudent")]
-        public IActionResult UpdateStudent([FromBody]Student studentParam)
+        [Route("updateCountry")]
+        public IActionResult UpdateCountry([FromBody]Country countryParam)
         {
             try
             {
-                _studentService.Update(studentParam);
+                _countryService.Update(countryParam);
                 return Ok();
             }
             catch (AppException ex)
             {
                 return BadRequest(new {message = ex.Message});
             }
-        }
 
+        }
+        
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
         [HttpDelete("{id}")]
-        [Route("deleteStudent")]
-        public IActionResult DeleteStudent(int id)
+        [Route("deleteCountry")]
+        public IActionResult DeleteCountry(int id)
         {
-            _studentService.Delete(id);
+            _countryService.Delete(id);
             return Ok();
         }
-
     }
 }
