@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 
 namespace LearningCentre.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("[controller]")]
     public class StudentController : ControllerBase
     {
@@ -28,10 +31,9 @@ namespace LearningCentre.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Student studentParam)
+        [Route("createStudent")]
+        public IActionResult CreateStudent([FromBody] Student studentParam)
         {
-
-            var errCount = ModelState.ErrorCount;
             try
             {
                 _studentService.CreateStudent(studentParam);

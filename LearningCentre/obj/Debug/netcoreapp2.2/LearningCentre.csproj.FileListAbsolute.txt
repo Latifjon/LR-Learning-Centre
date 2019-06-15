@@ -37,3 +37,17 @@ D:\Projects\LR\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcore
 D:\Projects\LR\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.RazorTargetAssemblyInfo.cache
 D:\Projects\LR\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.dll
 D:\Projects\LR\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.pdb
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\bin\Debug\netcoreapp2.2\LearningCentre.deps.json
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\bin\Debug\netcoreapp2.2\LearningCentre.runtimeconfig.json
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\bin\Debug\netcoreapp2.2\LearningCentre.runtimeconfig.dev.json
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\bin\Debug\netcoreapp2.2\LearningCentre.dll
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\bin\Debug\netcoreapp2.2\LearningCentre.pdb
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.csproj.CoreCompileInputs.cache
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.RazorAssemblyInfo.cache
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.RazorAssemblyInfo.cs
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.AssemblyInfoInputs.cache
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.AssemblyInfo.cs
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.RazorTargetAssemblyInfo.cache
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.dll
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.pdb
+C:\Projects\LR Server App\LR-Learning-Centre\LearningCentre\obj\Debug\netcoreapp2.2\LearningCentre.csprojAssemblyReference.cache

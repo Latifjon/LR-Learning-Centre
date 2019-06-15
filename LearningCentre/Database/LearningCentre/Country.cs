@@ -13,7 +13,8 @@ namespace LearningCentre.Database
         /// </summary>
         public Country()
         {
-            Student=new HashSet<Student>();
+            Student = new HashSet<Student>();
+            City = new HashSet<City>();
         }
 
         /// <summary>
@@ -35,5 +36,10 @@ namespace LearningCentre.Database
         /// 
         /// </summary>
         public ICollection<Student> Student { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<City> City { get; set; }
     }
 }
