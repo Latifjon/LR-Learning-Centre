@@ -78,8 +78,12 @@ namespace LearningCentre.Controllers
             return Ok(city);
         }
 
-
-        // PUT api/<controller>/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [Route("Update")]
         public IActionResult UpdateCity(int id, [FromBody]City city)

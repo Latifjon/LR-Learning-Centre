@@ -30,6 +30,11 @@ namespace LearningCentre.Controllers
             _studentService = studentService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="studentParam"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("createStudent")]
         public IActionResult CreateStudent([FromBody] Student studentParam)
