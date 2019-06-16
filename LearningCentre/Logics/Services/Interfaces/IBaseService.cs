@@ -34,13 +34,20 @@ namespace LearningCentre.Logics.Services.Interfaces
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="model"></param>
-        void Update(TModel model);
+        void Update(int id, TModel model);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         void Delete(int id);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        void VerifyIfModelFieldsNull(TModel model);
     }
 }

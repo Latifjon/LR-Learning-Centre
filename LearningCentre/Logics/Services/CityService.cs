@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
-using LearningCentre.Logics.Repositories;
 using LearningCentre.Logics.Services.Interfaces;
 
 namespace LearningCentre.Logics.Services
@@ -12,7 +11,7 @@ namespace LearningCentre.Logics.Services
     /// <summary>
     /// 
     /// </summary>
-    public class CountryService : BaseRepository, IBaseService<Country>
+    public class CityService : IBaseService<City>
     {
         /// <summary>
         /// 
@@ -23,33 +22,33 @@ namespace LearningCentre.Logics.Services
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public CountryService(LearningCentreContext context)
+        public CityService(LearningCentreContext context)
         {
             _dbContext = context;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="country"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public Country Create(Country country)
+        public City Create(City city)
         {
-            VerifyIfModelFieldsNull(country);
+            VerifyIfModelFieldsNull(city);
 
-            _dbContext.Country.Add(country);
+            _dbContext.City.Add(city);
             _dbContext.SaveChanges();
 
-            return country;
+            return city;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Country> GetAll()
+        public IEnumerable<City> GetAll()
         {
-            return _dbContext.Country.ToList();
+            return _dbContext.City.ToList();
         }
 
         /// <summary>
@@ -57,27 +56,28 @@ namespace LearningCentre.Logics.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Country GetById(int id)
+        public City GetById(int id)
         {
-            return _dbContext.Country.Find(id);
+            return _dbContext.City.Find(id);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="countryParam"></param>
-        public void Update(int id, Country countryParam)
+        /// <param name="cityParam"></param>
+        public void Update(int id, City cityParam)
         {
-            var country = _dbContext.Country.Find(id);
+            var city = GetById(id);
 
-            if (country == null)
-                throw new AppException("Country not found");
+            if(city==null)
+                throw new AppException("City not found");
 
-            country.Code = countryParam.Code;
-            country.Name = countryParam.Name;
+            city.Name = cityParam.Name;
+            city.Code = cityParam.Code;
+            city.CountryId = cityParam.CountryId;
 
-            _dbContext.Country.Update(country);
+            _dbContext.City.Update(city);
             _dbContext.SaveChanges();
         }
 
@@ -87,20 +87,22 @@ namespace LearningCentre.Logics.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var student = GetById(id);
+            var city = GetById(id);
 
-            _dbContext.Country.Remove(student);
+            _dbContext.City.Remove(city);
             _dbContext.SaveChanges();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="country"></param>
-        public void VerifyIfModelFieldsNull(Country country)
+        /// <param name="city"></param>
+        public void VerifyIfModelFieldsNull(City city)
         {
-            if (string.IsNullOrWhiteSpace(country.Name))
+            if (string.IsNullOrWhiteSpace(city.Name))
                 throw new AppException("Name column is required");
+            if (city.CountryId == null)
+                throw new AppException("CountryId column is required");
         }
     }
 }

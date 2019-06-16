@@ -15,39 +15,38 @@ namespace LearningCentre.Controllers
     /// 
     /// </summary>
     [Route("[controller]")]
-    public class CountryController : ControllerBase
+    public class CityController : ControllerBase
     {
         /// <summary>
         /// 
         /// </summary>
-        private readonly IBaseService<Country> _countryService;
+        private readonly IBaseService<City> _cityService;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="countryService"></param>
-        public CountryController(IBaseService<Country> countryService)
+        /// <param name="cityService"></param>
+        public CityController(IBaseService<City> cityService)
         {
-            _countryService = countryService;
+            _cityService = cityService;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="country"></param>
+        /// <param name="cityParam"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("Create")]
-        public IActionResult CreateCountry([FromBody]Country country)
+        [HttpPost("Create")]
+        public IActionResult CreateCity([FromBody]City cityParam)
         {
             try
             {
-                _countryService.Create(country);
+                _cityService.Create(cityParam);
                 return Ok();
             }
             catch (AppException ex)
             {
-                return BadRequest(new {message = ex.Message});
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -55,11 +54,11 @@ namespace LearningCentre.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet("Countries")]
-        public IActionResult GetCountries()
+        [HttpGet("Cities")]
+        public IActionResult GetCities()
         {
-            var countries = _countryService.GetAll();
-            return Ok(countries);
+            var cities = _cityService.GetAll();
+            return Ok(cities);
         }
 
         /// <summary>
@@ -68,46 +67,43 @@ namespace LearningCentre.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Route("customCountry")]
-        public IActionResult GetCountryById(int id)
+        [Route("customCity")]
+        public IActionResult GetCityById(int id)
         {
-            var country = _countryService.GetById(id);
+            var city = _cityService.GetById(id);
 
-            if (country == null)
-                return BadRequest("Country not found");
+            if (city == null)
+                return BadRequest("City not found");
 
-            return Ok(country);
+            return Ok(city);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="countryParam"></param>
+
+        // PUT api/<controller>/5
         [HttpPut("{id}")]
         [Route("Update")]
-        public IActionResult UpdateCountry(int id,[FromBody]Country countryParam)
+        public IActionResult UpdateCity(int id, [FromBody]City city)
         {
             try
             {
-                _countryService.Update(id, countryParam);
+                _cityService.Update(id, city);
                 return Ok();
             }
             catch (AppException ex)
             {
-                return BadRequest(new {message = ex.Message});
+                return BadRequest(new { message = ex.Message });
             }
-
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
         [Route("Delete")]
-        public IActionResult DeleteCountry(int id)
+        public IActionResult DeleteCity(int id)
         {
-            _countryService.Delete(id);
+            _cityService.Delete(id);
             return Ok();
         }
     }

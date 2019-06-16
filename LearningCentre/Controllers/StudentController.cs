@@ -81,11 +81,11 @@ namespace LearningCentre.Controllers
         /// <returns></returns>
         [HttpPut("{id}")]
         [Route("updateStudent")]
-        public IActionResult UpdateStudent([FromBody]Student studentParam)
+        public IActionResult UpdateStudent(int id,[FromBody]Student studentParam)
         {
             try
             {
-                _studentService.Update(studentParam);
+                _studentService.Update(id, studentParam);
                 return Ok();
             }
             catch (AppException ex)

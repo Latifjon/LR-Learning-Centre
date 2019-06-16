@@ -35,7 +35,7 @@ namespace LearningCentre.Logics.Services
         /// <returns></returns>
         public Student Create(Student student)
         {
-            VerifyIfStudentFieldsNull(student);
+            VerifyIfModelFieldsNull(student);
 
             _dbContext.Student.Add(student);
             _dbContext.SaveChanges();
@@ -65,10 +65,11 @@ namespace LearningCentre.Logics.Services
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="studentParam"></param>
-        public void Update(Student studentParam)
+        public void Update(int id,Student studentParam)
         {
-            var student = _dbContext.Student.Find(studentParam.Id);
+            var student = _dbContext.Student.Find(id);
 
             if (student == null)
                 throw new AppException("Student not found");
@@ -107,7 +108,7 @@ namespace LearningCentre.Logics.Services
         /// 
         /// </summary>
         /// <param name="student"></param>
-        private void VerifyIfStudentFieldsNull(Student student)
+        public void VerifyIfModelFieldsNull(Student student)
         {
             if (string.IsNullOrWhiteSpace(student.FirstName))
                 throw new AppException("First name is required");

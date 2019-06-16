@@ -88,6 +88,8 @@ namespace LearningCentre
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IBaseService<Student>, StudentService>();
             services.AddScoped<IBaseService<Country>, CountryService>();
+            services.AddScoped<IBaseService<City>, CityService>();
+            services.AddScoped<IBaseService<Teacher>, TeacherService>();
         }
 
         /// <summary>
