@@ -90,6 +90,9 @@ namespace LearningCentre
             services.AddScoped<IBaseService<Country>, CountryService>();
             services.AddScoped<IBaseService<City>, CityService>();
             services.AddScoped<IBaseService<Teacher>, TeacherService>();
+            services.AddScoped<IBaseService<Level>, LevelService>();
+            services.AddScoped<IBaseService<PlacementTest>, PlacementTestService>();
+            services.AddScoped<IBaseService<Subject>, SubjectService>();
         }
 
         /// <summary>
