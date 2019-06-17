@@ -24,7 +24,7 @@ namespace LearningCentre.Logics.Repositories
         /// </summary>
         protected BaseRepository()
         {
-            Connection = new SqlConnection("Server=User\\SQLEXPRESS;Database=LearningCentre;Trusted_Connection=True;ConnectRetryCount=0");
+            Connection = new SqlConnection("Server=joker\\SQLEXPRESS1uz;Database=LearningCentre;Trusted_Connection=True;ConnectRetryCount=0");
             Connection.Open();
         }
 

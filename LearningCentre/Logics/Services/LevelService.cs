@@ -6,13 +6,14 @@ using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
 using LearningCentre.Logics.Repositories;
 using LearningCentre.Logics.Services.Interfaces;
+using StackExchange.Redis;
 
 namespace LearningCentre.Logics.Services
 {
     /// <summary>
     /// 
     /// </summary>
-    public class CityService : BaseRepository, IBaseService<City>
+    public class LevelService : BaseRepository, IBaseService<Level>
     {
         /// <summary>
         /// 
@@ -22,34 +23,34 @@ namespace LearningCentre.Logics.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="context"></param>
-        public CityService(LearningCentreContext context)
+        /// <param name="dbContext"></param>
+        public LevelService(LearningCentreContext dbContext)
         {
-            _dbContext = context;
+            _dbContext = dbContext;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="level"></param>
         /// <returns></returns>
-        public City Create(City city)
+        public Level Create(Level level)
         {
-            VerifyIfModelFieldsNull(city);
+            VerifyIfModelFieldsNull(level);
 
-            _dbContext.City.Add(city);
+            _dbContext.Level.Add(level);
             _dbContext.SaveChanges();
 
-            return city;
+            return level;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<City> GetAll()
+        public IEnumerable<Level> GetAll()
         {
-            return _dbContext.City.ToList();
+            return _dbContext.Level.ToList();
         }
 
         /// <summary>
@@ -57,28 +58,27 @@ namespace LearningCentre.Logics.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public City GetById(int id)
+        public Level GetById(int id)
         {
-            return _dbContext.City.Find(id);
+            return _dbContext.Level.Find(id);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="cityParam"></param>
-        public void Update(int id, City cityParam)
+        /// <param name="levelParam"></param>
+        public void Update(int id, Level levelParam)
         {
-            var city = GetById(id);
+            var level = GetById(id);
 
-            if(city==null)
-                throw new AppException("City not found");
+            if(level==null)
+                throw new AppException("Current Level not found");
 
-            city.Name = cityParam.Name;
-            city.Code = cityParam.Code;
-            city.CountryId = cityParam.CountryId;
+            level.Name = levelParam.Name;
+            level.PlacementTest = levelParam.PlacementTest;
 
-            _dbContext.City.Update(city);
+            _dbContext.Level.Update(level);
             _dbContext.SaveChanges();
         }
 
@@ -88,25 +88,23 @@ namespace LearningCentre.Logics.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var city = GetById(id);
+            var level = GetById(id);
 
-            if(city==null)
-                throw new AppException("City not found or already deleted");
+            if (level == null)
+                throw new AppException("Level not found or already deleted");
 
-            _dbContext.City.Remove(city);
+            _dbContext.Level.Remove(level);
             _dbContext.SaveChanges();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="city"></param>
-        public void VerifyIfModelFieldsNull(City city)
+        /// <param name="level"></param>
+        public void VerifyIfModelFieldsNull(Level level)
         {
-            if (string.IsNullOrWhiteSpace(city.Name))
+            if(string.IsNullOrWhiteSpace(level.Name))
                 throw new AppException("Name column is required");
-            if (city.CountryId == null)
-                throw new AppException("CountryId column is required");
         }
     }
 }

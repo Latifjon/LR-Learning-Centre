@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
-using LearningCentre.Logics.Services;
 using LearningCentre.Logics.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace LearningCentre.Controllers
 {
@@ -15,82 +15,82 @@ namespace LearningCentre.Controllers
     /// 
     /// </summary>
     [Route("[controller]")]
-    public class TeacherController : ControllerBase
+    public class LevelController : ControllerBase
     {
         /// <summary>
         /// 
         /// </summary>
-        private readonly IBaseService<Teacher> _teacherService;
+        private readonly IBaseService<Level> _levelService;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="teacherService"></param>
-        public TeacherController(IBaseService<Teacher> teacherService)
+        /// <param name="levelService"></param>
+        public LevelController(IBaseService<Level> levelService)
         {
-            _teacherService = teacherService;
+            _levelService = levelService;
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="level"></param>
         /// <returns></returns>
         [HttpPost("Create")]
-        public IActionResult CreateTeacher([FromBody] Teacher teacherParam)
+        public IActionResult CreateLevel([FromBody] Level level)
         {
             try
             {
-                var teacher = _teacherService.Create(teacherParam);
-                return Ok(teacher);
-            }
-            catch (AppException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("Teachers")]
-        public IActionResult GetTeachers()
-        {
-            var teachers = _teacherService.GetAll();
-            return Ok(teachers);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        [Route("customTeacher")]
-        public IActionResult GetTeacherById(int id)
-        {
-            var teacher = _teacherService.GetById(id);
-            return Ok(teacher);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="teacherParam"></param>
-        /// <returns></returns>
-        [HttpPut("{id}")]
-        [Route("Update")]
-        public IActionResult UpdateTeacher(int id, [FromBody] Teacher teacherParam)
-        {
-            try
-            {
-                _teacherService.Update(id, teacherParam);
+                _levelService.Create(level);
                 return Ok();
             }
             catch (AppException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new {message = ex.Message});
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Levels")]
+        public IActionResult GetLevels()
+        {
+            var levels = _levelService.GetAll();
+            return Ok(levels);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        [Route("customLevel")]
+        public IActionResult GetLevelById(int id)
+        {
+            var level = _levelService.GetById(id);
+            return Ok(level);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="levelParam"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        [Route("Update")]
+        public IActionResult UpdateLevel(int id, [FromBody] Level levelParam)
+        {
+            try
+            {
+                _levelService.Update(id,levelParam);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new {message = ex.Message});
             }
         }
 
@@ -101,16 +101,16 @@ namespace LearningCentre.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Route("Delete")]
-        public IActionResult DeleteTeacher(int id)
+        public IActionResult DeleteLevel(int id)
         {
             try
             {
-                _teacherService.Delete(id);
+                _levelService.Delete(id);
                 return Ok();
             }
             catch (AppException ex)
             {
-                return BadRequest(new {message = ex.Message});
+                return BadRequest(new { message = ex.Message });
             }
         }
     }

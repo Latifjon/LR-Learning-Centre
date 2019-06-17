@@ -140,6 +140,8 @@ namespace LearningCentre.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Code");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");

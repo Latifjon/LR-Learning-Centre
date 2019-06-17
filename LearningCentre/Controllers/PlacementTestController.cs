@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
-using LearningCentre.Logics.Services;
 using LearningCentre.Logics.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,37 +14,38 @@ namespace LearningCentre.Controllers
     /// 
     /// </summary>
     [Route("[controller]")]
-    public class TeacherController : ControllerBase
+    public class PlacementTestController : Controller
     {
         /// <summary>
         /// 
         /// </summary>
-        private readonly IBaseService<Teacher> _teacherService;
+        private readonly IBaseService<PlacementTest> _testService;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="teacherService"></param>
-        public TeacherController(IBaseService<Teacher> teacherService)
+        /// <param name="testService"></param>
+        public PlacementTestController(IBaseService<PlacementTest> testService)
         {
-            _teacherService = teacherService;
+            _testService = testService;
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="placementTest"></param>
         /// <returns></returns>
         [HttpPost("Create")]
-        public IActionResult CreateTeacher([FromBody] Teacher teacherParam)
+        public IActionResult CreatePlacementTest([FromBody] PlacementTest placementTest)
         {
             try
             {
-                var teacher = _teacherService.Create(teacherParam);
-                return Ok(teacher);
+                _testService.Create(placementTest);
+                return Ok();
             }
             catch (AppException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new {message = ex.Message});
             }
         }
 
@@ -53,11 +53,11 @@ namespace LearningCentre.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet("Teachers")]
-        public IActionResult GetTeachers()
+        [HttpGet("PlacementTests")]
+        public IActionResult GetTests()
         {
-            var teachers = _teacherService.GetAll();
-            return Ok(teachers);
+            var tests = _testService.GetAll();
+            return Ok(tests);
         }
 
         /// <summary>
@@ -66,31 +66,31 @@ namespace LearningCentre.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Route("customTeacher")]
-        public IActionResult GetTeacherById(int id)
+        [Route("customTest")]
+        public IActionResult GetCustomTest(int id)
         {
-            var teacher = _teacherService.GetById(id);
-            return Ok(teacher);
+            var placementTest = _testService.GetById(id);
+            return Ok(placementTest);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="teacherParam"></param>
+        /// <param name="placementTest"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [Route("Update")]
-        public IActionResult UpdateTeacher(int id, [FromBody] Teacher teacherParam)
+        public IActionResult UpdatePlacementTest(int id, [FromBody] PlacementTest placementTest)
         {
             try
             {
-                _teacherService.Update(id, teacherParam);
+                _testService.Update(id, placementTest);
                 return Ok();
             }
             catch (AppException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new {message = ex.Message});
             }
         }
 
@@ -101,11 +101,11 @@ namespace LearningCentre.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Route("Delete")]
-        public IActionResult DeleteTeacher(int id)
+        public IActionResult DeletePlacementTest(int id)
         {
             try
             {
-                _teacherService.Delete(id);
+                _testService.Delete(id);
                 return Ok();
             }
             catch (AppException ex)

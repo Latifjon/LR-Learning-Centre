@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
+using LearningCentre.Logics.Repositories;
 using LearningCentre.Logics.Services.Interfaces;
 using Microsoft.CodeAnalysis.Text;
 
@@ -12,7 +13,7 @@ namespace LearningCentre.Logics.Services
     /// <summary>
     /// 
     /// </summary>
-    public class TeacherService : IBaseService<Teacher>
+    public class TeacherService : BaseRepository, IBaseService<Teacher>
     {
         /// <summary>
         /// 

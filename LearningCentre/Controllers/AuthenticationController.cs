@@ -22,9 +22,19 @@ namespace LearningCentre.Controllers
     [Route("[controller]")]
     public class AuthenticationController : ControllerBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private IAuthenticationService _userService;
+        /// <summary>
+        /// 
+        /// </summary>
         private IMapper _mapper;
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly AppSettings _appSettings;
+        
         /// <summary>
         /// 
         /// </summary>
@@ -72,6 +82,11 @@ namespace LearningCentre.Controllers
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userParam"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody] UserProfileTransfer userParam)

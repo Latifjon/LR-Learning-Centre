@@ -21,6 +21,7 @@ namespace LearningCentre.Database
         /// </summary>
         public int Id { get; set; }
 
+        public string Code { get; set; } 
         /// <summary>
         /// 
         /// </summary>

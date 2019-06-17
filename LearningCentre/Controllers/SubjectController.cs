@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using LearningCentre.Database;
 using LearningCentre.Logics.Helpers;
-using LearningCentre.Logics.Services;
 using LearningCentre.Logics.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,77 +15,33 @@ namespace LearningCentre.Controllers
     /// 
     /// </summary>
     [Route("[controller]")]
-    public class TeacherController : ControllerBase
+    public class SubjectController : ControllerBase
     {
         /// <summary>
         /// 
         /// </summary>
-        private readonly IBaseService<Teacher> _teacherService;
+        private readonly IBaseService<Subject> _subjectService;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="teacherService"></param>
-        public TeacherController(IBaseService<Teacher> teacherService)
+        /// <param name="subjectService"></param>
+        public SubjectController(IBaseService<Subject> subjectService)
         {
-            _teacherService = teacherService;
+            _subjectService = subjectService;
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="subject"></param>
         /// <returns></returns>
         [HttpPost("Create")]
-        public IActionResult CreateTeacher([FromBody] Teacher teacherParam)
+        public IActionResult CreateSubject([FromBody]Subject subject)
         {
             try
             {
-                var teacher = _teacherService.Create(teacherParam);
-                return Ok(teacher);
-            }
-            catch (AppException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("Teachers")]
-        public IActionResult GetTeachers()
-        {
-            var teachers = _teacherService.GetAll();
-            return Ok(teachers);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        [Route("customTeacher")]
-        public IActionResult GetTeacherById(int id)
-        {
-            var teacher = _teacherService.GetById(id);
-            return Ok(teacher);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="teacherParam"></param>
-        /// <returns></returns>
-        [HttpPut("{id}")]
-        [Route("Update")]
-        public IActionResult UpdateTeacher(int id, [FromBody] Teacher teacherParam)
-        {
-            try
-            {
-                _teacherService.Update(id, teacherParam);
+                _subjectService.Create(subject);
                 return Ok();
             }
             catch (AppException ex)
@@ -97,15 +53,67 @@ namespace LearningCentre.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        [HttpGet("Subjects")]
+        public IActionResult GetSubjects()
+        {
+            var subjects = _subjectService.GetAll();
+            return Ok(subjects);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        [Route("customSubject")]
+        public IActionResult GetSubjectById(int id)
+        {
+            try
+            {
+                _subjectService.GetById(id);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new {message = ex.Message});
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="subjectParam"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        [Route("Update")]
+        public IActionResult UpdateSubject(int id, [FromBody] Subject subjectParam)
+        {
+            try
+            {
+                _subjectService.Update(id,subjectParam);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new {message = ex.Message});
+            } 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Route("Delete")]
-        public IActionResult DeleteTeacher(int id)
+        public IActionResult DeleteSubject(int id)
         {
             try
             {
-                _teacherService.Delete(id);
+                _subjectService.Delete(id);
                 return Ok();
             }
             catch (AppException ex)
